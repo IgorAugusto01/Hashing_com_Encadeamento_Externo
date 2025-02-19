@@ -8,7 +8,6 @@
 #include <stdlib.h>
 
 
-int buscaRecuriva
 
 
 int hash(int valor, int tam)
@@ -26,6 +25,7 @@ ListaCompartimentos* cria_lista_compartimentos_vazia(int tam)
 
 }
 
+
 void cria_hash(char *nome_arquivo_hash, int tam)
 {
     ListaCompartimentos *lcomp = cria_lista_compartimentos_vazia(tam);
@@ -33,17 +33,9 @@ void cria_hash(char *nome_arquivo_hash, int tam)
 
 
 
-}
-
 int busca(int cod_cli, char *nome_arquivo_hash, char *nome_arquivo_dados)
 {
-    ListaCompartimentos *lcomp = le_compartimentos(nome_arquivo_hash);
-    ListaClientes *lcli = le_clientes(nome_arquivo_dados);
 
-    int h = hash(cod_cli,lcomp->qtd);
-
-    if(lcomp->lista[h]->prox == -1) return -1;
-    if(lcli->lista[lcomp->lista[h]->prox]->cod_cliente == cod_cli) return 0;
 
 
     return INT_MAX;
