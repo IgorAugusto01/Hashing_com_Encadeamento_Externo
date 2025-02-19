@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1739908918 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\encadeamento_exterior.c
+	<limits.h>
+	"lista_compartimentos.h"
+	"lista_clientes.h"
+	<stdlib.h>
+
+1739675342 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\compartimento_hash.c
+	<string.h>
+	<stdlib.h>
+	<stdarg.h>
+	"compartimento_hash.h"
+
+1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\compartimento_hash.h
+	<stdio.h>
+
+1739675342 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\lista_clientes.c
+	<stdlib.h>
+	<stdarg.h>
+	"lista_clientes.h"
+
+1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\lista_clientes.h
+	"cliente.h"
+
+1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\cliente.h
+	<stdio.h>
+
+1739675342 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\lista_compartimentos.c
+	<stdlib.h>
+	<stdarg.h>
+	"lista_compartimentos.h"
+	"compartimento_hash.h"
+
+1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\lista_compartimentos.h
+	"compartimento_hash.h"
+
+1739675342 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\test_encadeamento_exterior.c
+	<limits.h>
+	<stdlib.h>
+	"ufftest.h"
+	"lista_clientes.h"
+	"cliente.h"
+	"lista_compartimentos.h"
+	"compartimento_hash.h"
+	"encadeamento_exterior.h"
+
+1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\ufftest.h
+	<string.h>
+	<stdlib.h>
+	<stdio.h>
+	<time.h>
+
+1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\encadeamento_exterior.h
+
+1739899050 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\cliente.c
+	<string.h>
+	<stdlib.h>
+	"cliente.h"
+
