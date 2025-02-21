@@ -1,9 +1,10 @@
 # depslib dependency file v1.0
-1739908918 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\encadeamento_exterior.c
+1740163767 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\encadeamento_exterior.c
 	<limits.h>
 	"lista_compartimentos.h"
 	"lista_clientes.h"
 	<stdlib.h>
+	"cliente.h"
 
 1739675342 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\compartimento_hash.c
 	<string.h>
@@ -25,7 +26,7 @@
 1739675342 c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\cliente.h
 	<stdio.h>
 
-1739675342 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\lista_compartimentos.c
+1739993746 source:c:\users\augus\onedrive\documentos\4ºperíodo\ed2\projetos\projeto2entrega\lista_compartimentos.c
 	<stdlib.h>
 	<stdarg.h>
 	"lista_compartimentos.h"
