@@ -12,7 +12,6 @@
 
 int buscaRecursiva(int end, int cod_cli, char* nome_arquivo_dados)
 {
-
     if( end == -1) return -1;
     FILE *dados = fopen(nome_arquivo_dados,"rb");
     fseek(dados,(end * sizeof(Cliente)),SEEK_SET);
@@ -33,20 +32,8 @@ int buscaRecursiva(int end, int cod_cli, char* nome_arquivo_dados)
     free(c);
 
     return buscaRecursiva(end,cod_cli,nome_arquivo_dados);
-
-
-
-
 }
 
-ListaCompartimentos* cria_lista_compartimentos_vazia(int tam)
-{
-    ListaCompartimentos *lcompVazia = (ListaCompartimentos*)malloc(sizeof(ListaCompartimentos));
-    lcompVazia->qtd = tam;
-    lcompVazia->lista=(CompartimentoHash**)malloc(tam * sizeof(CompartimentoHash*));
-    for(int i=0; i<tam; i++) lcompVazia->lista[i] = compartimento_hash(-1);
-    return lcompVazia;
-}
 
 int hash(int valor, int tam)
 {
@@ -56,7 +43,13 @@ int hash(int valor, int tam)
 
 void cria_hash(char *nome_arquivo_hash, int tam)
 {
-    ListaCompartimentos *lcomp = cria_lista_compartimentos_vazia(tam);
+    ListaCompartimentos *lcomp = cria_compartimentos(tam);
+    for(int i = 0; i < tam; i++)
+    {
+        CompartimentoHash *comp= compartimento_hash(-1);
+        lcomp->lista[i] = comp;
+        free(comp);
+    }
     salva_compartimentos(nome_arquivo_hash,lcomp);
 
 }
@@ -64,7 +57,6 @@ void cria_hash(char *nome_arquivo_hash, int tam)
 int busca(int cod_cli, char *nome_arquivo_hash, char *nome_arquivo_dados)
 {
 
-    FILE *dados = fopen(nome_arquivo_dados,"rb");
     ListaCompartimentos *lComp = le_compartimentos(nome_arquivo_hash);
     int tam = lComp->qtd;
     int h = hash(cod_cli,tam);
