@@ -72,29 +72,7 @@ int busca(int cod_cli, char *nome_arquivo_hash, char *nome_arquivo_dados)
     free(lComp);
 
 
-    if(end == -1) return -1;
-    fseek(dados,(end * sizeof(Cliente)),SEEK_SET);
-    Cliente *c = le_cliente(dados);
-    fclose(dados);
-
-    if(c->cod_cliente == cod_cli)
-    {
-        if(c->status == OCUPADO)
-        {
-            free(c);
-            return end;
-        }
-        end = c->prox;
-        free(c);
-        return buscaRecursiva(end,cod_cli,nome_arquivo_dados);
-    }
-    end = c->prox;
-    free(c);
-
-    return buscaRecursiva(end,cod_cli,nome_arquivo_dados);
-
-
-
+    return (end == -1) ? -1 : buscaRecursiva (end,cod_cli,nome_arquivo_dados);
 
 }
 
