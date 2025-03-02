@@ -41,7 +41,7 @@ int posicaoLivre(char *nome_arquivo_dados)
     {
         fseek(arqDados, (i * sizeof(Cliente)), SEEK_SET);
         Cliente *c = le_cliente(arqDados);
-        if (c == NULL)
+        if (c == NULL || c->status == LIBERADO)
         {
             free(c);
             break;
@@ -112,14 +112,14 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
     FILE *tab_hash = fopen(nome_arquivo_hash, "rb+");
     ListaCompartimentos *lc = le_compartimentos(nome_arquivo_hash);
     int pLivre = posicaoLivre(nome_arquivo_dados);
-    int h = hash(cod_cli, lc->qtd);
+    end = hash(cod_cli, lc->qtd);
     free(lc);
-    fseek(tab_hash, (h * sizeof(CompartimentoHash)), SEEK_SET);
+    fseek(tab_hash, (end * sizeof(CompartimentoHash)), SEEK_SET);
     CompartimentoHash *comp = le_compartimento(tab_hash);
     if (comp->prox == -1)
     {
         comp->prox = pLivre;
-        fseek(tab_hash, (h * sizeof(CompartimentoHash)), SEEK_SET);
+        fseek(tab_hash, (end * sizeof(CompartimentoHash)), SEEK_SET);
         salva_compartimento(comp, tab_hash);
         free(comp);
         fseek(arqDados, (pLivre * sizeof(Cliente)), SEEK_SET);
