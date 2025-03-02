@@ -188,8 +188,20 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
 	}
 }
 
-int exclui(int cod_cli, char *nome_arquivo_hash, char *nome_arquivo_dados)
+int exclui(int cod_cli, char *nome_arquivo_hash, char *nome_arquivo_dados)	// Feito por Igor
 {
-	//TODO: Inserir aqui o codigo do algoritmo de remocao
-    return INT_MAX;
+
+    FILE *arqDados = fopen(nome_arquivo_dados, "rb+");
+    int end = busca(cod_cli, nome_arquivo_hash, nome_arquivo_dados);
+    if (end == -1)
+        return -1;
+    fseek(arqDados, (end * sizeof(Cliente)), SEEK_SET);
+    Cliente *cli = le_cliente(arqDados);
+    cli->status = LIBERADO;
+    fseek(arqDados, (end * sizeof(Cliente)), SEEK_SET);
+    salva_cliente(cli, arqDados);
+    free(cli);
+    fclose(arqDados);
+
+    return end;
 }
