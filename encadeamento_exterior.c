@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include "cliente.h"
 
-
 int hash(int valor, char *nome_arquivo_hash)
 {
     FILE *tab_hash = fopen(nome_arquivo_hash, "rb+");
@@ -70,14 +69,13 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
     int end = hash(cod_cli, nome_arquivo_hash);
     if (compartimentos->lista[end]->prox == -1)
     {
-        int livre = num_registros;
-        compartimentos->lista[end]->prox = livre;
-        fseek(arqDados, (livre * sizeof(Cliente)), SEEK_SET);
+        end = num_registros;
+        compartimentos->lista[end]->prox = end;
+        fseek(arqDados, (end * sizeof(Cliente)), SEEK_SET);
         salva_cliente(c, arqDados);
         salva_compartimentos(nome_arquivo_hash, compartimentos);
         free(c);
         free(compartimentos);
-        end = livre;
         fclose(arqDados);
         return end;
     }
@@ -91,7 +89,7 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
         int atual = -1;
         do
         {
-     
+
             fseek(arqDados, (prox * sizeof(Cliente)), SEEK_SET);
             aux = le_cliente(arqDados);
             if (aux->cod_cliente == cod_cli)
@@ -128,7 +126,7 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
             prox = aux->prox;
 
         } while (prox != -1);
-        
+
         aux->prox = num_registros;
         fseek(arqDados, (atual * sizeof(Cliente)), SEEK_SET);
         salva_cliente(aux, arqDados);
@@ -140,7 +138,6 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
         fclose(arqDados);
         return end;
     }
-  
 }
 
 int exclui(int cod_cli, char *nome_arquivo_hash, char *nome_arquivo_dados)
