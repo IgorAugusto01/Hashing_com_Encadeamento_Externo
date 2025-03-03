@@ -8,24 +8,6 @@
 #include <stdlib.h>
 #include "cliente.h"
 
-int posicaoLivre(char *nome_arquivo_dados)
-{
-    FILE *arqDados = fopen(nome_arquivo_dados, "rb");
-    int i = 0;
-    while (1)
-    {
-        fseek(arqDados, (i * sizeof(Cliente)), SEEK_SET);
-        Cliente *c = le_cliente(arqDados);
-        if (c == NULL || c->status == LIBERADO)
-        {
-            free(c);
-            break;
-        }
-        i++;
-    }
-    fclose(arqDados);
-    return i;
-}
 
 int hash(int valor, char *nome_arquivo_hash)
 {
@@ -88,7 +70,7 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
     int end = hash(cod_cli, nome_arquivo_hash);
     if (compartimentos->lista[end]->prox == -1)
     {
-        int livre = posicaoLivre(nome_arquivo_dados);
+        int livre = num_registros;
         compartimentos->lista[end]->prox = livre;
         fseek(arqDados, (livre * sizeof(Cliente)), SEEK_SET);
         salva_cliente(c, arqDados);
@@ -146,17 +128,17 @@ int insere(int cod_cli, char *nome_cli, char *nome_arquivo_hash, char *nome_arqu
             prox = aux->prox;
 
         } while (prox != -1);
-        int livre = posicaoLivre(nome_arquivo_dados);
-        aux->prox = livre;
+        
+        aux->prox = num_registros;
         fseek(arqDados, (atual * sizeof(Cliente)), SEEK_SET);
         salva_cliente(aux, arqDados);
-        end = livre;
+        end = num_registros;
         fseek(arqDados, (end * sizeof(Cliente)), SEEK_SET);
         salva_cliente(c, arqDados);
         free(aux);
         free(c);
         fclose(arqDados);
-        return livre;
+        return end;
     }
   
 }
